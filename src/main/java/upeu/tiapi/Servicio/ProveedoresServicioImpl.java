@@ -2,8 +2,7 @@ package upeu.tiapi.Servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import upeu.tiapi.Entity.Cliente;
-import upeu.tiapi.Entity.Proveedores;
+import upeu.tiapi.Entity.Proveedor;
 import upeu.tiapi.Repositorio.ProveedoresRepositorio;
 
 import java.util.List;
@@ -15,12 +14,12 @@ public class ProveedoresServicioImpl implements IProveedoresServicio{
 
 
     @Override
-    public List<Proveedores> buscarTodos() {
+    public List<Proveedor> buscarTodos() {
         return proveedoresRepositorio.findAll();
     }
 
     @Override
-    public Proveedores guardar(Proveedores proveedores) {
+    public Proveedor guardar(Proveedor proveedores) {
         return proveedoresRepositorio.save(proveedores);
     }
 
@@ -30,12 +29,12 @@ public class ProveedoresServicioImpl implements IProveedoresServicio{
     }
 
     @Override
-    public void actualizar(Proveedores proveedores) {
+    public void actualizar(Proveedor proveedores) {
         proveedoresRepositorio.save(proveedores);
     }
 
     @Override
-    public Optional<Proveedores> buscarPorId(Integer id) {
+    public Optional<Proveedor> buscarPorId(Integer id) {
         return proveedoresRepositorio.findById(id);
     }
 }

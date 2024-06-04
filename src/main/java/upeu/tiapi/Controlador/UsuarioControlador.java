@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @RestController
 @RequestMapping("/api-ti")
@@ -41,18 +40,13 @@ public class UsuarioControlador {
                 .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id));
         usuario.setNombre(usuarioRecibido.getNombre());
         usuario.setEmail(usuarioRecibido.getEmail());
-        usuario.setContraseña(usuarioRecibido.getContraseña());
+        usuario.setPassword(usuarioRecibido.getPassword());
         Usuario usuarioActualizado = usuarioServicio.guardar(usuario);
         return ResponseEntity.ok(usuarioActualizado);
     }
 
     @DeleteMapping("/usuarios/{id}")
-    public ResponseEntity<Map<String, Boolean>> eliminar(@PathVariable Integer id) {
-        Usuario usuario = usuarioServicio.buscarPorId(id)
-                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id));
+    public void eliminar(@PathVariable Integer id) {
         usuarioServicio.eliminar(id);
-        Map<String, Boolean> respuesta = new HashMap<>();
-        respuesta.put("eliminado", Boolean.TRUE);
-        return ResponseEntity.ok(respuesta);
     }
 }

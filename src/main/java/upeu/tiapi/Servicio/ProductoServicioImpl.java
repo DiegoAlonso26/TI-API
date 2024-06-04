@@ -3,7 +3,6 @@ package upeu.tiapi.Servicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import upeu.tiapi.Entity.Producto;
-import upeu.tiapi.Entity.Proveedor;
 import upeu.tiapi.Repositorio.ProductoRepositorio;
 
 import java.util.List;

@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
 
 
 @Entity
@@ -21,6 +19,6 @@ public class Usuario {
     private Integer id;
     private String nombre;
     private String email;
-    private String contraseña;
+    private String password;
 
 }

@@ -29,8 +29,8 @@ public class ProveedoresServicioImpl implements IProveedoresServicio{
     }
 
     @Override
-    public void actualizar(Proveedor proveedores) {
-        proveedoresRepositorio.save(proveedores);
+    public Proveedor actualizar(Proveedor proveedores) {
+        return proveedoresRepositorio.save(proveedores);
     }
 
     @Override

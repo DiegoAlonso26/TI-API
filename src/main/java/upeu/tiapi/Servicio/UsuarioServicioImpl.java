@@ -28,8 +28,9 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
     }
 
     @Override
-    public void actualizar(Usuario usuario) {
+    public Usuario actualizar(Usuario usuario) {
         usuarioRepositorio.save(usuario);
+        return usuario;
     }
 
     @Override

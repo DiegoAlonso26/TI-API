@@ -31,14 +31,8 @@ public class ClienteControlador {
         return clienteServicio.guardar(cliente);
     }
     @PutMapping("/clientes/{id}")
-    public ResponseEntity<Cliente> modificarCliente(@PathVariable int id, @RequestBody Cliente clienteRecibido) {
-        Cliente cliente = clienteServicio.buscarPorId(id)
-                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el cliente con el id: " + id));
-        cliente.setNombre(clienteRecibido.getNombre());
-        cliente.setDireccion(clienteRecibido.getDireccion());
-        cliente.setTelefono(clienteRecibido.getTelefono());
-        Cliente clienteActualizado = clienteServicio.guardar(cliente);
-        return ResponseEntity.ok(clienteActualizado);
+    public Cliente editarCliente(@RequestBody Cliente cliente) {
+        return clienteServicio.actualizar(cliente);
 
     }
 

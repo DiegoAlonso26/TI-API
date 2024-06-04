@@ -9,7 +9,7 @@ public interface IUsuarioServicio {
     List<Usuario> buscarTodos();
     Usuario guardar(Usuario usuario);
     void eliminar(Integer id);
-    void actualizar(Usuario usuario);
+    Usuario actualizar(Usuario usuario);
     Optional<Usuario> buscarPorId(Integer id);
 
 }

@@ -10,6 +10,6 @@ public interface IProveedoresServicio {
     List<Proveedor> buscarTodos();
     Proveedor guardar(Proveedor proveedores);
     void eliminar(Integer id);
-    void actualizar(Proveedor proveedores);
+    Proveedor actualizar(Proveedor proveedores);
     Optional<Proveedor> buscarPorId(Integer id);
 }

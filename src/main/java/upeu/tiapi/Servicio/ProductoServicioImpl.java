@@ -29,8 +29,9 @@ public class ProductoServicioImpl implements IProductoServicio {
     }
 
     @Override
-    public void actualizarProducto(Producto producto) {
+    public Producto actualizarProducto(Producto producto) {
         productoRepositorio.save(producto);
+        return producto;
     }
 
     @Override

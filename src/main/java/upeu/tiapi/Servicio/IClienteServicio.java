@@ -10,6 +10,6 @@ public interface IClienteServicio {
     List<Cliente> buscarTodos();
     Cliente guardar(Cliente cliente);
     void eliminar(Integer id);
-    void actualizar(Cliente cliente);
+    Cliente actualizar(Cliente cliente);
     Optional<Cliente> buscarPorId(Integer id);
 }

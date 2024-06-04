@@ -29,9 +29,10 @@ public class ClienteServicioImpl implements IClienteServicio {
     }
 
     @Override
-    public void actualizar(Cliente cliente) {
+    public Cliente actualizar(Cliente cliente) {
         clienteRepositorio.save(cliente);
 
+        return cliente;
     }
 
     @Override

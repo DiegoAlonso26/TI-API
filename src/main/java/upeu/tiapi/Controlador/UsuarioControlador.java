@@ -35,14 +35,9 @@ public class UsuarioControlador {
     }
 
     @PutMapping("/usuarios/{id}")
-    public ResponseEntity<Usuario> actualizar(@PathVariable Integer id, @RequestBody Usuario usuarioRecibido) {
-        Usuario usuario = usuarioServicio.buscarPorId(id)
-                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id));
-        usuario.setNombre(usuarioRecibido.getNombre());
-        usuario.setEmail(usuarioRecibido.getEmail());
-        usuario.setPassword(usuarioRecibido.getPassword());
-        Usuario usuarioActualizado = usuarioServicio.guardar(usuario);
-        return ResponseEntity.ok(usuarioActualizado);
+    public Usuario editar(@RequestBody Usuario usuario) {
+        return usuarioServicio.actualizar(usuario);
+
     }
 
     @DeleteMapping("/usuarios/{id}")

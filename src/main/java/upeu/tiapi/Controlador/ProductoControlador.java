@@ -34,15 +34,8 @@ public class ProductoControlador {
     }
 
     @PutMapping("/productos/{id}")
-    public ResponseEntity<Producto> actualizarProducto(@PathVariable int id, @RequestBody Producto productoRecibido) {
-        Producto producto = productoServicio.buscarProductoPorId(id)
-                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el producto con el id: " + id));
-        producto.setNombre(productoRecibido.getNombre());
-        producto.setPrecio(productoRecibido.getPrecio());
-        producto.setDescripcion(productoRecibido.getDescripcion());
-        producto.setStock(productoRecibido.getStock());
-        Producto productoActualizado = productoServicio.guardarProducto(producto);
-        return ResponseEntity.ok(productoActualizado);
+    public Producto actualizarProducto(@RequestBody Producto producto) {
+      return productoServicio.actualizarProducto(producto);
 
     }
     @DeleteMapping("/productos/{id}")

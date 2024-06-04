@@ -28,8 +28,8 @@ public class VentaServicioImpl implements IVentasServicio{
     }
 
     @Override
-    public void actualizar(Venta venta) {
-        ventaRepositorio.save(venta);
+    public Venta actualizar(Venta venta) {
+       return ventaRepositorio.save(venta);
     }
 
     @Override

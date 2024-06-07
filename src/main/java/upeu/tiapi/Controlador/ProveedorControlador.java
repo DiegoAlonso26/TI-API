@@ -34,10 +34,14 @@ public class ProveedorControlador {
     }
 
     @PutMapping("/proveedores/{id}")
-    public Proveedor actualizarProveedor( @RequestBody Proveedor proveedores) {
-        proveedoresServicio.actualizar(proveedores);
-        return proveedores;
+    public ResponseEntity<Proveedor> actializarProveedor(@PathVariable int id, @RequestBody Proveedor proveedores) {
+        if(!proveedoresServicio.buscarPorId(id).isPresent()) {
+            throw new RecursoNoEncontradoExcepcion("No se encontró el proveedor con el id: " + id);
 
+        }
+        proveedores.setId(id);
+        proveedoresServicio.actualizar(proveedores);
+        return ResponseEntity.ok(proveedores);
     }
     @DeleteMapping("/proveedores/{id}")
     public void eliminarProveedor(@PathVariable int id) {

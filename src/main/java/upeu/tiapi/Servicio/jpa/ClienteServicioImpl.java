@@ -1,9 +1,10 @@
-package upeu.tiapi.Servicio;
+package upeu.tiapi.Servicio.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import upeu.tiapi.Entity.Cliente;
 import upeu.tiapi.Repositorio.ClienteRepositorio;
+import upeu.tiapi.Servicio.IClienteServicio;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,10 +30,9 @@ public class ClienteServicioImpl implements IClienteServicio {
     }
 
     @Override
-    public Cliente actualizar(Cliente cliente) {
-        clienteRepositorio.save(cliente);
+    public void actualizar(Cliente cliente) {
+         clienteRepositorio.save(cliente);
 
-        return cliente;
     }
 
     @Override

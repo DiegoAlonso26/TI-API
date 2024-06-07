@@ -8,7 +8,9 @@ import upeu.tiapi.Entity.Cliente;
 import upeu.tiapi.Servicio.IClienteServicio;
 import upeu.tiapi.excepcion.RecursoNoEncontradoExcepcion;
 
+
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api-ti")
@@ -17,28 +19,37 @@ public class ClienteControlador {
     private IClienteServicio clienteServicio;
 
     @GetMapping("/clientes")
-    public List<Cliente> listaClientes() {
+    public List<Cliente> listarClientes() {
         return clienteServicio.buscarTodos();
     }
+
     @GetMapping("/clientes/{id}")
-    public ResponseEntity<Cliente> buscarClientePorId(@PathVariable int id) {
-        Cliente cliente = clienteServicio.buscarPorId(id)
-                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el cliente con el id: " + id));
-        return ResponseEntity.ok(cliente);
+    public Optional<Cliente> buscarCliente(@PathVariable int id) {
+        return clienteServicio.buscarPorId(id);
     }
+
     @PostMapping("/clientes")
     public Cliente crearCliente(@RequestBody Cliente cliente) {
         return clienteServicio.guardar(cliente);
     }
-    @PutMapping("/clientes/{id}")
-    public Cliente editarCliente(@RequestBody Cliente cliente) {
-        return clienteServicio.actualizar(cliente);
 
+    @PutMapping("/clientes/{id}")
+    public ResponseEntity<Cliente> actualizarCliente(@PathVariable int id, @RequestBody Cliente cliente) {
+        if(!clienteServicio.buscarPorId(id).isPresent()) {
+            throw new RecursoNoEncontradoExcepcion("No se encontró el cliente con el id: " + id);
+
+        }
+        cliente.setId(id);
+        clienteServicio.actualizar(cliente);
+        return ResponseEntity.ok(cliente);
     }
 
     @DeleteMapping("/clientes/{id}")
-    public void eliminarCliente(@PathVariable int id) {
+    public String eliminar(@PathVariable int id) {
         clienteServicio.eliminar(id);
+        return "Cliente eliminado";
     }
 
 }
+
+

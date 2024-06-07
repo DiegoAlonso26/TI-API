@@ -6,6 +6,9 @@ import org.hibernate.annotations.Where;
 
 
 @Entity
+@Table(name = "usuario")
+@SQLDelete(sql = "UPDATE usuario SET estado = 0 WHERE id = ?")
+@Where(clause = "estado = 1")
 @ToString
 public class Usuario {
     @Id

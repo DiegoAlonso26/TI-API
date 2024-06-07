@@ -1,14 +1,15 @@
-package upeu.tiapi.Servicio;
+package upeu.tiapi.Servicio.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import upeu.tiapi.Entity.Proveedor;
 import upeu.tiapi.Repositorio.ProveedoresRepositorio;
+import upeu.tiapi.Servicio.IProveedoresServicio;
 
 import java.util.List;
 import java.util.Optional;
 @Service
-public class ProveedoresServicioImpl implements IProveedoresServicio{
+public class ProveedoresServicioImpl implements IProveedoresServicio {
     @Autowired
     private ProveedoresRepositorio proveedoresRepositorio;
 
@@ -29,8 +30,8 @@ public class ProveedoresServicioImpl implements IProveedoresServicio{
     }
 
     @Override
-    public Proveedor actualizar(Proveedor proveedores) {
-        return proveedoresRepositorio.save(proveedores);
+    public void actualizar(Proveedor proveedores) {
+        proveedoresRepositorio.save(proveedores);
     }
 
     @Override

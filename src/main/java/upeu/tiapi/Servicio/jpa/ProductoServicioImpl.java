@@ -1,17 +1,19 @@
-package upeu.tiapi.Servicio;
+package upeu.tiapi.Servicio.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import upeu.tiapi.Entity.Producto;
 import upeu.tiapi.Repositorio.ProductoRepositorio;
+import upeu.tiapi.Servicio.IProductoServicio;
+import upeu.tiapi.excepcion.RecursoNoEncontradoExcepcion;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class ProductoServicioImpl implements IProductoServicio {
-@Autowired
+    @Autowired
     private ProductoRepositorio productoRepositorio;
-
 
     @Override
     public List<Producto> listarTodosProductos() {
@@ -29,9 +31,18 @@ public class ProductoServicioImpl implements IProductoServicio {
     }
 
     @Override
-    public Producto actualizarProducto(Producto producto) {
-        productoRepositorio.save(producto);
-        return producto;
+    public void actualizarProducto(Producto producto) {
+        Optional<Producto> productoExistente = productoRepositorio.findById(producto.getId());
+        if (productoExistente.isPresent()) {
+            Producto prod = productoExistente.get();
+            prod.setNombre(producto.getNombre());
+            prod.setDescripcion(producto.getDescripcion());
+            prod.setPrecio(producto.getPrecio());
+            prod.setStock(producto.getStock());
+            productoRepositorio.save(prod);
+        } else {
+            throw new RecursoNoEncontradoExcepcion("No se encontró el producto con el id: " + producto.getId());
+        }
     }
 
     @Override

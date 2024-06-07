@@ -1,21 +1,19 @@
 package upeu.tiapi.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 @Entity
-@SQLDelete(sql = "UPDATE cliente SET estado = 0 WHERE IDCliente = ?")
+@Table(name = "cliente")
+@SQLDelete(sql = "UPDATE cliente SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 @ToString
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer IDCliente;
+    private Integer id;
     private String nombre;
     private String direccion;
     private String telefono;
@@ -29,12 +27,12 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public Integer getIDCliente() {
-        return IDCliente;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIDCliente(Integer IDCliente) {
-        this.IDCliente = IDCliente;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombre() {

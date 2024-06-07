@@ -3,28 +3,28 @@ package upeu.tiapi.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 
 @Entity
 @ToString
-
+@Table(name = "venta")
 public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idVenta;
+    private Integer id;
 
+    // Relación de clave foránea con la clase Usuario
     @ManyToOne
-    @JoinColumn(name = "idUsuario", nullable = false)
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
+
+    // Relación de clave foránea con la clase Producto
+    @ManyToOne
+    @JoinColumn(name = "producto_id", nullable = false)
+    private Producto producto;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime fecha;
@@ -38,12 +38,12 @@ public class Venta {
         this.fecha = fecha;
     }
 
-    public Integer getIdVenta() {
-        return idVenta;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdVenta(Integer idVenta) {
-        this.idVenta = idVenta;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public BigDecimal getTotal() {
@@ -60,5 +60,13 @@ public class Venta {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 }

@@ -35,9 +35,14 @@ public class UsuarioControlador {
     }
 
     @PutMapping("/usuarios/{id}")
-    public Usuario editar(@RequestBody Usuario usuario) {
-        return usuarioServicio.actualizar(usuario);
+    public ResponseEntity<Usuario> actualizar(@PathVariable Integer id, @RequestBody Usuario usuario) {
+        if(!usuarioServicio.buscarPorId(id).isPresent()) {
+            throw new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id);
 
+        }
+        usuario.setId(id);
+        usuarioServicio.actualizar(usuario);
+        return ResponseEntity.ok(usuario);
     }
 
     @DeleteMapping("/usuarios/{id}")

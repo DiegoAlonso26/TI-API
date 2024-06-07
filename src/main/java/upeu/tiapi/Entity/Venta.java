@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Table(name = "venta")
 @SQLDelete(sql = "UPDATE venta SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
+
 public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

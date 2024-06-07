@@ -1,9 +1,11 @@
 package upeu.tiapi.Entity;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.ToString;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -11,10 +13,13 @@ import java.time.LocalDateTime;
 @Entity
 @ToString
 @Table(name = "venta")
+@SQLDelete(sql = "UPDATE venta SET estado = 0 WHERE id = ?")
+@Where(clause = "estado = 1")
 public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private Integer estado;
 
     // Relación de clave foránea con la clase Usuario
     @ManyToOne
@@ -68,5 +73,13 @@ public class Venta {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 }

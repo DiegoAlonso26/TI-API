@@ -49,7 +49,7 @@ public class VentaControlador {
     @DeleteMapping("/ventas/{id}")
     public String eliminar(@PathVariable Integer id) {
         ventaServicio.eliminar(id);
-        return "Venta eliminada correctamente";
+        return "Vente eliminada correctamente";
     }
 
 

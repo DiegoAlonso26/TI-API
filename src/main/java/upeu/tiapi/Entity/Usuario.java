@@ -6,11 +6,11 @@ import org.hibernate.annotations.Where;
 
 
 @Entity
-@Table(name = "usuario")
-@SQLDelete(sql = "UPDATE usuario SET estado = 0 WHERE id = ?")
+@Table(name = "usuarios")
+@SQLDelete(sql = "UPDATE usuarios SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 @ToString
-public class    Usuario {
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,6 +18,10 @@ public class    Usuario {
     private String email;
     private String password;
     private Integer estado;
+    //LLave foranea perfil
+    @ManyToOne
+    @JoinColumn( name = "idperfil", nullable = false)
+    private Perfil perfil;
 
     public String getEmail() {
         return email;
@@ -57,5 +61,13 @@ public class    Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 }

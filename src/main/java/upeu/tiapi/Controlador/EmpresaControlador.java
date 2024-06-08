@@ -35,7 +35,7 @@ public class EmpresaControlador {
     @PutMapping("/empresas/{id}")
     public ResponseEntity<Empresa> actualizar(@PathVariable Integer id, @RequestBody Empresa empresa) {
         if(!empresaServicio.buscarPorId(id).isPresent()) {
-            throw new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id);
+            throw new RecursoNoEncontradoExcepcion("No se encontró la empresa con el id: " + id);
 
         }
         empresa.setId(id);

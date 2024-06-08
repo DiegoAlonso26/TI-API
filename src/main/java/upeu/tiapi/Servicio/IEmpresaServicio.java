@@ -8,9 +8,9 @@ import java.util.Optional;
 
 public interface IEmpresaServicio {
     List<Empresa> buscarTodos();
-    Empresa guardar(Empresa usuario);
+    Empresa guardar(Empresa empresa);
     void eliminar(Integer id);
-    void actualizar(Empresa usuario);
+    void actualizar(Empresa empresa);
     Optional<Empresa> buscarPorId(Integer id);
 
 }

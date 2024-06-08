@@ -6,12 +6,11 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 @Entity
-@ToString
-@Table(name = "empresas")
-@SQLDelete(sql = "UPDATE empresas SET estado = 0 WHERE id = ?")
+@Table(name = "sucursales")
+@SQLDelete(sql = "UPDATE sucursales SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
-
-public class Empresa {
+@ToString
+public class Sucursal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -19,11 +18,13 @@ public class Empresa {
     private String nombre;
     private String direccion;
     private String ciudad;
-    private String codigopostal;
+    private String codigoPostal;
     private String pais;
     private String telefono;
+    @ManyToOne
+    @JoinColumn( name = "idempresa ", nullable = false)
+    private Empresa empresa;
     private Integer estado;
-
 
     public Integer getId() {
         return id;
@@ -57,12 +58,12 @@ public class Empresa {
         this.ciudad = ciudad;
     }
 
-    public String getCodigopostal() {
-        return codigopostal;
+    public String getCodigoPostal() {
+        return codigoPostal;
     }
 
-    public void setCodigopostal(String codigoPostal) {
-        this.codigopostal = codigoPostal;
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
     }
 
     public String getPais() {
@@ -79,6 +80,14 @@ public class Empresa {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
     public Integer getEstado() {

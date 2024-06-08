@@ -5,34 +5,24 @@ import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import java.util.List;
+
 @Entity
-@ToString
-@Table(name = "perfiles")
-@SQLDelete(sql = "UPDATE perfiles SET estado = 0 WHERE id = ?")
+@Table(name = "categorias")
+@SQLDelete(sql = "UPDATE categorias SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
-public class Perfil{
+@ToString
+public class Categoria {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
     private String nombre;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
+    private List<Producto> producto;
     private String descripcion;
     private Integer estado;
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
-    }
 
     public Integer getId() {
         return id;
@@ -48,5 +38,21 @@ public class Perfil{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 }

@@ -20,6 +20,11 @@ public class ProductoControlador {
         return productoServicio.listarTodosProductos();
     }
 
+    @PostMapping("/productos")
+    public Producto guardarProducto(@RequestBody Producto producto) {
+        return productoServicio.guardarProducto(producto);
+    }
+
     @GetMapping("/productos/{id}")
     public ResponseEntity<Producto> buscarProductoPorId(@PathVariable int id) {
         Producto producto = productoServicio.buscarProductoPorId(id)
@@ -27,10 +32,6 @@ public class ProductoControlador {
         return ResponseEntity.ok(producto);
     }
 
-    @PostMapping("/productos")
-    public Producto guardarProducto(@RequestBody Producto producto) {
-        return productoServicio.guardarProducto(producto);
-    }
 
     @PutMapping("/productos/{id}")
     public ResponseEntity<Producto> actualizarProducto(@PathVariable Integer id, @RequestBody Producto producto) {

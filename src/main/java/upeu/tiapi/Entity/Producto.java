@@ -18,16 +18,16 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private String precio;
-    private String stock;
+
+    @ManyToOne
+    @JoinColumn( name = "idstock", nullable = false)
+    private Stock stock;
+
+    @ManyToOne
+    @JoinColumn( name = "idcategoria", nullable = false)
+    private Categoria categoria;
+
     private Integer estado;
-
-    public String getStock() {
-        return stock;
-    }
-
-    public void setStock(String stock) {
-        this.stock = stock;
-    }
 
     public Integer getId() {
         return id;
@@ -59,6 +59,22 @@ public class Producto {
 
     public void setPrecio(String precio) {
         this.precio = precio;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public Integer getEstado() {

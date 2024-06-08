@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @Table(name = "ventas")
 @SQLDelete(sql = "UPDATE ventas SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
-
 public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,17 +23,21 @@ public class Venta {
 
     // Relación de clave foránea con la clase Usuario
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "idusuario", nullable = false)
     private Usuario usuario;
 
-    // Relación de clave foránea con la clase Producto
-    @ManyToOne
-    @JoinColumn(name = "producto_id", nullable = false)
-    private Producto producto;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime fecha;
     private BigDecimal total;
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
+    }
 
     public LocalDateTime getFecha() {
         return fecha;
@@ -66,21 +69,5 @@ public class Venta {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
     }
 }

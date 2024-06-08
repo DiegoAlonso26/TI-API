@@ -13,14 +13,10 @@ import java.util.List;
 @Where(clause = "estado = 1")
 @ToString
 public class Categoria {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer id;
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
-    private List<Producto> producto;
     private String descripcion;
     private Integer estado;
 
@@ -55,4 +51,5 @@ public class Categoria {
     public void setEstado(Integer estado) {
         this.estado = estado;
     }
+
 }

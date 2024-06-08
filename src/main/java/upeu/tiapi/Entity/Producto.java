@@ -19,9 +19,6 @@ public class Producto {
     private String descripcion;
     private String precio;
 
-    @ManyToOne
-    @JoinColumn( name = "idstock", nullable = false)
-    private Stock stock;
 
     @ManyToOne
     @JoinColumn( name = "idcategoria", nullable = false)
@@ -61,13 +58,6 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Stock getStock() {
-        return stock;
-    }
-
-    public void setStock(Stock stock) {
-        this.stock = stock;
-    }
 
     public Categoria getCategoria() {
         return categoria;

@@ -16,7 +16,7 @@ public class Usuario {
     private Integer id;
     private String nombre;
     private String email;
-    private String contraseña;
+    private String password;
     private Integer estado;
     //LLave foranea perfil
     @ManyToOne
@@ -56,11 +56,11 @@ public class Usuario {
     }
 
     public String getPassword() {
-        return contraseña;
+        return password;
     }
 
     public void setPassword(String password) {
-        this.contraseña = password;
+        this.password = password;
     }
 
     public Perfil getPerfil() {
@@ -70,4 +70,6 @@ public class Usuario {
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
     }
+
+
 }

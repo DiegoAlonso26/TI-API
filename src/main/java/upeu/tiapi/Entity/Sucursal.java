@@ -18,7 +18,7 @@ public class Sucursal {
     private String nombre;
     private String direccion;
     private String ciudad;
-    private String codigoPostal;
+    private String codigopostal;
     private String pais;
     private String telefono;
     @ManyToOne
@@ -58,12 +58,12 @@ public class Sucursal {
         this.ciudad = ciudad;
     }
 
-    public String getCodigoPostal() {
-        return codigoPostal;
+    public String getCodigopostal() {
+        return codigopostal;
     }
 
-    public void setCodigoPostal(String codigoPostal) {
-        this.codigoPostal = codigoPostal;
+    public void setCodigopostal(String codigopostal) {
+        this.codigopostal = codigopostal;
     }
 
     public String getPais() {

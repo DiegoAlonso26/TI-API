@@ -46,4 +46,12 @@ public class Stock {
     public void setEstado(Integer estado) {
         this.estado = estado;
     }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
 }

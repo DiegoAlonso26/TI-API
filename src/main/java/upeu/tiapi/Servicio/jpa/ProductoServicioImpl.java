@@ -38,7 +38,7 @@ public class ProductoServicioImpl implements IProductoServicio {
             prod.setNombre(producto.getNombre());
             prod.setDescripcion(producto.getDescripcion());
             prod.setPrecio(producto.getPrecio());
-            prod.setStock(producto.getStock());
+            prod.setCategoria(producto.getCategoria());
             productoRepositorio.save(prod);
         } else {
             throw new RecursoNoEncontradoExcepcion("No se encontró el producto con el id: " + producto.getId());

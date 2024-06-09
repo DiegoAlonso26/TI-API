@@ -15,23 +15,23 @@ public class DetalleVentasControlador {
     @Autowired
     private IDetalleVentasServicio detalleVentasServicio;
 
-    @GetMapping("/detalleVentas")
+    @GetMapping("/detalleventas")
     public List<DetalleVentas> listaDetalleVentas() {
         return detalleVentasServicio.buscarTodos();
     }
 
-    @GetMapping("/detalleVentas/{id}")
+    @GetMapping("/detalleventas/{id}")
     public ResponseEntity<DetalleVentas> buscarDetalleVentas(@PathVariable Integer id) {
         DetalleVentas detalleVentas = detalleVentasServicio.buscarPorId(id)
                 .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el detalle de ventas con el id: " + id));
     return ResponseEntity.ok(detalleVentas);
     }
 
-    @PostMapping("/detalleVentas")
+    @PostMapping("/detalleventas")
     public DetalleVentas guardarDetalleVentas(@RequestBody DetalleVentas detalleVentas) {
         return detalleVentasServicio.guardar(detalleVentas);
     }
-    @PutMapping("/detalleVentas/{id}")
+    @PutMapping("/detalleventas/{id}")
     public ResponseEntity<DetalleVentas> actualizarDetalleVentas(@PathVariable Integer id, @RequestBody DetalleVentas detalleVentas) {
         if(!detalleVentasServicio.buscarPorId(id).isPresent()){
             throw new RecursoNoEncontradoExcepcion("No se encontró el detalle de ventas con el id: " + id);
@@ -42,7 +42,7 @@ public class DetalleVentasControlador {
         return ResponseEntity.ok(detalleVentas);
     }
 
-    @DeleteMapping("/detalleVentas/{id}")
+    @DeleteMapping("/detalleventas/{id}")
     public String eliminarDetalleVentas(@PathVariable Integer id) {
         detalleVentasServicio.eliminar(id);
         return "Detalle de ventas con el id: " + id + " eliminado";

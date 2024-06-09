@@ -23,16 +23,15 @@ public class VentaControlador {
         return ventaServicio.buscarTodos();
     }
 
-    @GetMapping("/ventas/{id}")
-    public Optional<Venta> buscarPorId(@PathVariable Integer id) {
-        return ventaServicio.buscarPorId(id);
-    }
-
     @PostMapping("/ventas")
     public void guardar(@RequestBody Venta venta) {
         venta.setFecha(LocalDateTime.now()); // Asignar la fecha y hora actual
-
         ventaServicio.guardar(venta);
+    }
+
+    @GetMapping("/ventas/{id}")
+    public Optional<Venta> buscarPorId(@PathVariable Integer id) {
+        return ventaServicio.buscarPorId(id);
     }
 
     @PutMapping("/ventas/{id}")
@@ -46,11 +45,12 @@ public class VentaControlador {
         return ResponseEntity.ok(venta);
     }
 
+
+
     @DeleteMapping("/ventas/{id}")
     public String eliminar(@PathVariable Integer id) {
         ventaServicio.eliminar(id);
         return "Venta eliminada correctamente";
     }
-
 
 }

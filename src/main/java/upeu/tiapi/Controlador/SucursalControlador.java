@@ -30,14 +30,14 @@ public class SucursalControlador {
     @GetMapping("/sucursales/{id}")
     public ResponseEntity<Sucursal> buscarPorId(@PathVariable Integer id) {
         Sucursal sucursal = sucursalServicio.buscarPorId(id)
-                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id));
+                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró la sucursal con el id: " + id));
         return ResponseEntity.ok(sucursal);
     }
 
     @PutMapping("/sucursales/{id}")
     public ResponseEntity<Sucursal> actualizar(@PathVariable Integer id, @RequestBody Sucursal sucursal) {
         if(!sucursalServicio.buscarPorId(id).isPresent()) {
-            throw new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id);
+            throw new RecursoNoEncontradoExcepcion("No se encontró la sucursal con el id: " + id);
 
         }
         sucursal.setId(id);

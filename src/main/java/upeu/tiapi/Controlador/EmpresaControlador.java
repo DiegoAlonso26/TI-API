@@ -28,7 +28,7 @@ public class EmpresaControlador {
     @GetMapping("/empresas/{id}")
     public ResponseEntity<Empresa> buscarPorId(@PathVariable Integer id) {
         Empresa empresa = empresaServicio.buscarPorId(id)
-                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id));
+                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró la empresa con el id: " + id));
         return ResponseEntity.ok(empresa);
     }
 

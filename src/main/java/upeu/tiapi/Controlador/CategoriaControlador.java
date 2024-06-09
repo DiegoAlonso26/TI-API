@@ -28,14 +28,14 @@ public class CategoriaControlador {
     @GetMapping("/categorias/{id}")
     public ResponseEntity<Categoria> buscarPorId(@PathVariable Integer id) {
         Categoria categoria = categoriaServicio.buscarPorId(id)
-                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id));
+                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró la categoria con el id: " + id));
         return ResponseEntity.ok(categoria);
     }
 
     @PutMapping("/categorias/{id}")
     public ResponseEntity<Categoria> actualizar(@PathVariable Integer id, @RequestBody Categoria categoria) {
         if(!categoriaServicio.buscarPorId(id).isPresent()) {
-            throw new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id);
+            throw new RecursoNoEncontradoExcepcion("No se encontró la categoria con el id: " + id);
         }
         categoria.setId(id);
         categoriaServicio.actualizar(categoria);

@@ -29,14 +29,14 @@ public class StockControlador {
     @GetMapping("/stocks/{id}")
     public ResponseEntity<Stock> buscarPorId(@PathVariable Integer id) {
         Stock stock = stockServicio.buscarPorId(id)
-                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id));
+                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el stock con el id: " + id));
         return ResponseEntity.ok(stock);
     }
 
     @PutMapping("/stocks/{id}")
     public ResponseEntity<Stock> actualizar(@PathVariable Integer id, @RequestBody Stock stock) {
         if(!stockServicio.buscarPorId(id).isPresent()) {
-            throw new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id);
+            throw new RecursoNoEncontradoExcepcion("No se encontró el stock con el id: " + id);
 
         }
         stock.setId(id);

@@ -26,7 +26,8 @@ public class DetalleVentas {
     private Producto producto;
     private Integer cantidad;
     private BigDecimal total;
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     public Integer getCantidad() {
         return cantidad;

@@ -16,7 +16,8 @@ public class Acceso {
 
     private Integer id;
     private String permiso;
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     @ManyToOne
     @JoinColumn(name = "idperfil", nullable = false)

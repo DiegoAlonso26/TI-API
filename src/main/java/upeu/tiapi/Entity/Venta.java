@@ -19,7 +19,8 @@ public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     // Relación de clave foránea con la clase Usuario
     @ManyToOne

@@ -18,7 +18,8 @@ public class Perfil{
     private Integer id;
     private String nombre;
     private String descripcion;
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     public String getDescripcion() {
         return descripcion;

@@ -24,7 +24,8 @@ public class Sucursal {
     @ManyToOne
     @JoinColumn( name = "idempresa ", nullable = false)
     private Empresa empresa;
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     public Integer getId() {
         return id;

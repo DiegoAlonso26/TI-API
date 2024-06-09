@@ -22,7 +22,8 @@ public class Empresa {
     private String codigopostal;
     private String pais;
     private String telefono;
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
 
 
     public Integer getId() {

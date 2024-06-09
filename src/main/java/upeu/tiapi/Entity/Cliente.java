@@ -17,8 +17,8 @@ public class Cliente {
     private String nombre;
     private String direccion;
     private String telefono;
-    private Integer estado;
-
+    @Column(nullable = false)
+    private Integer estado = 1;
     public String getDireccion() {
         return direccion;
     }

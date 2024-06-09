@@ -24,7 +24,8 @@ public class Producto {
     @JoinColumn( name = "idcategoria", nullable = false)
     private Categoria categoria;
 
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     public Integer getId() {
         return id;

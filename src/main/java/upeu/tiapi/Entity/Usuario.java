@@ -17,7 +17,8 @@ public class Usuario {
     private String nombre;
     private String email;
     private String password;
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
     //LLave foranea perfil
     @ManyToOne
     @JoinColumn( name = "idperfil", nullable = false)

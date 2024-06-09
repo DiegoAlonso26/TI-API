@@ -21,7 +21,8 @@ public class Stock {
     @ManyToOne
     @JoinColumn(name = "idproducto", nullable = false)
     private Producto producto;
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     public Integer getId() {
         return id;

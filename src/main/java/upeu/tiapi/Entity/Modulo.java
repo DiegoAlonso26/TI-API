@@ -19,7 +19,8 @@ public class Modulo {
     private Integer id;
     private String nombre;
     private String descripcion;
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     public Integer getId() {
         return id;

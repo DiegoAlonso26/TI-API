@@ -18,6 +18,9 @@ public class SucursalProductos {
     @JoinColumn( name = "idproducto", nullable = false)
     private Producto producto;
     private String cantidad;
+    @Column(nullable = false)
+    private Integer estado = 1;
+
 
     public Integer getId() {
         return id;
@@ -41,5 +44,13 @@ public class SucursalProductos {
 
     public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 }

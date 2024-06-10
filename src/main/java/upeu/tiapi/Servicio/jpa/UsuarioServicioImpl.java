@@ -12,6 +12,7 @@ import java.util.Optional;
 public class UsuarioServicioImpl implements IUsuarioServicio {
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+
     @Override
     public List<Usuario> buscarTodos() {
         return usuarioRepositorio.findAll();

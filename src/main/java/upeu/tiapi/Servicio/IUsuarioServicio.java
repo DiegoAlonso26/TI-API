@@ -10,5 +10,4 @@ public interface IUsuarioServicio {
     void eliminar(Integer id);
     void actualizar(Usuario usuario);
     Optional<Usuario> buscarPorId(Integer id);
-
 }

@@ -8,7 +8,6 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "productos")
-@ToString
 @SQLDelete(sql = "UPDATE productos SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class Producto {

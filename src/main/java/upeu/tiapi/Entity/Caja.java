@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Table(name = "caja")
 @SQLDelete(sql = "UPDATE caja SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
-@ToString
 public class Caja {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

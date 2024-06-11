@@ -11,7 +11,6 @@ import java.util.List;
 @Table(name = "modulos")
 @SQLDelete(sql = "UPDATE modulos SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
-@ToString
 public class Modulo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

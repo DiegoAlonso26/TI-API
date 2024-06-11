@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Table(name = "detallepedidos")
 @SQLDelete(sql = "UPDATE detallepedidos SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
-@ToString
+
 public class DetallePedidos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

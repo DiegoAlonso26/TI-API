@@ -9,7 +9,6 @@ import org.hibernate.annotations.Where;
 @Table(name = "sucursales")
 @SQLDelete(sql = "UPDATE sucursales SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
-@ToString
 public class Sucursal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

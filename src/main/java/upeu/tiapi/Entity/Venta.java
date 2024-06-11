@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 
 
 @Entity
-@ToString
 @Table(name = "ventas")
 @SQLDelete(sql = "UPDATE ventas SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")

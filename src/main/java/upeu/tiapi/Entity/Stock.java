@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "stock")
-@ToString
 @SQLDelete(sql = "UPDATE stock SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class Stock {

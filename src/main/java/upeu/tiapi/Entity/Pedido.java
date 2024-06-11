@@ -20,11 +20,11 @@ public class Pedido {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn( name = "idcliente ", nullable = false)
+    @JoinColumn( name = "idcliente", nullable = false)
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn( name = "idproducto ", nullable = false)
+    @JoinColumn( name = "idproducto", nullable = false)
     private Producto producto;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")

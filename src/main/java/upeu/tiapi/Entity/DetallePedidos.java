@@ -19,11 +19,11 @@ public class DetallePedidos {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn( name = "idpedido ", nullable = false)
+    @JoinColumn( name = "idpedido", nullable = false)
     private Pedido pedido;
 
     @ManyToOne
-    @JoinColumn( name = "idproducto ", nullable = false)
+    @JoinColumn( name = "idproducto", nullable = false)
     private Producto producto;
 
     private String cantidad;

@@ -21,13 +21,27 @@ public class Venta {
 
     // Relación de clave foránea con la clase Usuario
     @ManyToOne
-    @JoinColumn(name = "idusuario", nullable = false)
+    @JoinColumn(name = "id_cliente", nullable = false)
     private Usuario usuario;
 
+    // Relación de clave foránea con la clase Usuario
+    @ManyToOne
+    @JoinColumn(name = "id_sucursal", nullable = false)
+    private Sucursal  sucursal ;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime fecha;
+    private String tipoPago;
+    private String devolucion;
     private BigDecimal total;
+
+    public String getDevolucion() {
+        return devolucion;
+    }
+
+    public void setDevolucion(String devolucion) {
+        this.devolucion = devolucion;
+    }
 
     public Integer getEstado() {
         return estado;
@@ -51,6 +65,22 @@ public class Venta {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
+    }
+
+    public String getTipoPago() {
+        return tipoPago;
+    }
+
+    public void setTipoPago(String tipoPago) {
+        this.tipoPago = tipoPago;
     }
 
     public BigDecimal getTotal() {

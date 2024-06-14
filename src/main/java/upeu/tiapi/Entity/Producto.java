@@ -13,16 +13,42 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
-    private String descripcion;
-    private String precio;
-
+    private String precio_mayor;
+    private String precio_menor;
+    private String precio_promocion;
 
     @ManyToOne
-    @JoinColumn( name = "idcategoria", nullable = false)
+    @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 
-    @Column(nullable = false)
-    private Integer estado = 1;
+    @ManyToOne
+    @JoinColumn(name = "id_almacen")
+    private Almacen almacen;
+    private Integer estado;
+
+    public Almacen getAlmacen() {
+        return almacen;
+    }
+
+    public void setAlmacen(Almacen almacen) {
+        this.almacen = almacen;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
+    }
 
     public Integer getId() {
         return id;
@@ -40,36 +66,27 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getPrecio_mayor() {
+        return precio_mayor;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setPrecio_mayor(String precio_mayor) {
+        this.precio_mayor = precio_mayor;
     }
 
-    public String getPrecio() {
-        return precio;
+    public String getPrecio_menor() {
+        return precio_menor;
     }
 
-    public void setPrecio(String precio) {
-        this.precio = precio;
+    public void setPrecio_menor(String precio_menor) {
+        this.precio_menor = precio_menor;
     }
 
-
-    public Categoria getCategoria() {
-        return categoria;
+    public String getPrecio_promocion() {
+        return precio_promocion;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
+    public void setPrecio_promocion(String precio_promocion) {
+        this.precio_promocion = precio_promocion;
     }
 }

@@ -1,11 +1,13 @@
 package upeu.tiapi.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "detalleventas")
@@ -16,14 +18,18 @@ public class DetalleVentas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
-    @JoinColumn(name = "idventa", nullable = false)
+    @JoinColumn(name = "id_venta", nullable = false)
     private Venta venta;
 
     @ManyToOne
-    @JoinColumn(name = "idproducto",nullable = false)
+    @JoinColumn(name = "id_producto",nullable = false)
     private Producto producto;
     private Integer cantidad;
-    private BigDecimal total;
+    private BigDecimal precio;
+
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime fechaRegistro;
+
     @Column(nullable = false)
     private Integer estado = 1;
 
@@ -43,6 +49,14 @@ public class DetalleVentas {
         this.estado = estado;
     }
 
+    public LocalDateTime getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -51,20 +65,20 @@ public class DetalleVentas {
         this.id = id;
     }
 
+    public BigDecimal getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
+    }
+
     public Producto getProducto() {
         return producto;
     }
 
     public void setProducto(Producto producto) {
         this.producto = producto;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
     }
 
     public Venta getVenta() {

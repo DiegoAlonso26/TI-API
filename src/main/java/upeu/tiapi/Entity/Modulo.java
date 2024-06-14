@@ -7,8 +7,8 @@ import org.hibernate.annotations.Where;
 import java.util.List;
 
 @Entity
-@Table(name = "modulos")
-@SQLDelete(sql = "UPDATE modulos SET estado = 0 WHERE id = ?")
+@Table(name = "modulo")
+@SQLDelete(sql = "UPDATE modulo SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class Modulo {
     @Id
@@ -16,7 +16,6 @@ public class Modulo {
 
     private Integer id;
     private String nombre;
-    private String descripcion;
     @Column(nullable = false)
     private Integer estado = 1;
 
@@ -36,14 +35,6 @@ public class Modulo {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public Integer getEstado() {
         return estado;
     }
@@ -51,4 +42,5 @@ public class Modulo {
     public void setEstado(Integer estado) {
         this.estado = estado;
     }
+
 }

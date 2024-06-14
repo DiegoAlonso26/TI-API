@@ -1,7 +1,10 @@
 package upeu.tiapi.Entity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -15,12 +18,22 @@ public class Usuario {
     private String nombre;
     private String email;
     private String password;
+    private String telefono;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime fechaCreacion;
     @Column(nullable = false)
     private Integer estado = 1;
-    //LLave foranea perfil
     @ManyToOne
-    @JoinColumn( name = "idperfil", nullable = false)
-    private Perfil perfil;
+    @JoinColumn( name = "id_cliente", nullable = false)
+    private Cliente cliente;
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     public String getEmail() {
         return email;
@@ -36,6 +49,14 @@ public class Usuario {
 
     public void setEstado(Integer estado) {
         this.estado = estado;
+    }
+
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
     public Integer getId() {
@@ -62,13 +83,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public Perfil getPerfil() {
-        return perfil;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setPerfil(Perfil perfil) {
-        this.perfil = perfil;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
-
-
 }

@@ -13,6 +13,8 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
+    private String apellido;
+    private String email;
     private String direccion;
     private String telefono;
     @Column(nullable = false)
@@ -55,5 +57,21 @@ public class Cliente {
 
     public void setEstado(Integer estado) {
         this.estado = estado;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -7,25 +7,19 @@ import org.hibernate.annotations.Where;
 import java.util.List;
 
 @Entity
-@Table(name = "perfiles")
-@SQLDelete(sql = "UPDATE perfiles SET estado = 0 WHERE id = ?")
+@Table(name = "perfil")
+@SQLDelete(sql = "UPDATE perfil SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class Perfil{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nombre;
-    private String descripcion;
-    @Column(nullable = false)
-    private Integer estado = 1;
+    private String tipoPerfil;
+    private Integer estado;
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
 
     public Integer getEstado() {
         return estado;
@@ -43,11 +37,19 @@ public class Perfil{
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTipoPerfil() {
+        return tipoPerfil;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTipoPerfil(String tipoPerfil) {
+        this.tipoPerfil = tipoPerfil;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

@@ -1,8 +1,10 @@
 package upeu.tiapi.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "sucursales")
@@ -13,17 +15,31 @@ public class Sucursal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
+    private String representante;
     private String nombre;
-    private String direccion;
-    private String ciudad;
-    private String codigopostal;
-    private String pais;
     private String telefono;
+    @JsonFormat(pattern = "HH:mm")
+    private LocalDateTime horaApertura;
     @ManyToOne
-    @JoinColumn( name = "idempresa ", nullable = false)
-    private Empresa empresa;
-    @Column(nullable = false)
-    private Integer estado = 1;
+    @JoinColumn(name = "id_lugar")
+    private Lugar lugar;
+    private Integer estado;
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
+    }
+
+    public LocalDateTime getHoraApertura() {
+        return horaApertura;
+    }
+
+    public void setHoraApertura(LocalDateTime horaApertura) {
+        this.horaApertura = horaApertura;
+    }
 
     public Integer getId() {
         return id;
@@ -31,6 +47,14 @@ public class Sucursal {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Lugar getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(Lugar lugar) {
+        this.lugar = lugar;
     }
 
     public String getNombre() {
@@ -41,36 +65,12 @@ public class Sucursal {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getRepresentante() {
+        return representante;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public String getCodigopostal() {
-        return codigopostal;
-    }
-
-    public void setCodigopostal(String codigopostal) {
-        this.codigopostal = codigopostal;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setRepresentante(String representante) {
+        this.representante = representante;
     }
 
     public String getTelefono() {
@@ -79,21 +79,5 @@ public class Sucursal {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
     }
 }

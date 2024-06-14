@@ -32,18 +32,9 @@ public class ProductoServicioImpl implements IProductoServicio {
 
     @Override
     public void actualizarProducto(Producto producto) {
-        Optional<Producto> productoExistente = productoRepositorio.findById(producto.getId());
-        if (productoExistente.isPresent()) {
-            Producto prod = productoExistente.get();
-            prod.setNombre(producto.getNombre());
-            prod.setDescripcion(producto.getDescripcion());
-            prod.setPrecio(producto.getPrecio());
-            prod.setCategoria(producto.getCategoria());
-            productoRepositorio.save(prod);
-        } else {
-            throw new RecursoNoEncontradoExcepcion("No se encontró el producto con el id: " + producto.getId());
-        }
+        productoRepositorio.save(producto);
     }
+
 
     @Override
     public Optional<Producto> buscarProductoPorId(Integer id) {

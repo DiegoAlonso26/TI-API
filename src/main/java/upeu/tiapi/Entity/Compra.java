@@ -5,35 +5,46 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Random;
 
 @Entity
-@Table(name = "compras")
-@SQLDelete(sql = "UPDATE compras SET estado = 0 WHERE id = ?")
+@Table(name = "compra")
+@SQLDelete(sql = "UPDATE compra SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class Compra {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer id;
-    //Fk to Proveedor
-    @ManyToOne
-    @JoinColumn( name = "idproveedor", nullable = false)
-    private Proveedor proveedor;
-    //FK to Producto
-    @ManyToOne
-    @JoinColumn( name = "idproducto", nullable = false)
-    private Producto producto;
+
+    @Column(name = "codigo_remision", nullable = false, unique = true)
+    private String codigoRemision;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime fecha;
 
-    private BigDecimal total;
+    private char devolucion;
 
-    @Column(nullable = false)
-    private Integer estado = 1;
+    @ManyToOne
+    @JoinColumn(name = "id_proveedor")
+    private Proveedor proveedor;
 
+    private Integer estado;
+
+    @PrePersist
+    protected void onCreate() {
+        this.codigoRemision = generarCodigoGuia();
+        this.fecha = LocalDateTime.now();
+    }
+
+    private String generarCodigoGuia() {
+        Random random = new Random();
+        int numeroAleatorio = random.nextInt(1000000); // Genera un número aleatorio de 6 dígitos
+        return String.format("%06d", numeroAleatorio); // Formatea el número a 6 dígitos con ceros a la izquierda
+    }
+
+    // Getters y setters
     public Integer getId() {
         return id;
     }
@@ -42,20 +53,12 @@ public class Compra {
         this.id = id;
     }
 
-    public Proveedor getProveedor() {
-        return proveedor;
+    public String getCodigoRemision() {
+        return codigoRemision;
     }
 
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setCodigoRemision(String codigoRemision) {
+        this.codigoRemision = codigoRemision;
     }
 
     public LocalDateTime getFecha() {
@@ -66,12 +69,20 @@ public class Compra {
         this.fecha = fecha;
     }
 
-    public BigDecimal getTotal() {
-        return total;
+    public char getDevolucion() {
+        return devolucion;
     }
 
-    public void setTotal(BigDecimal total) {
-        this.total = total;
+    public void setDevolucion(char devolucion) {
+        this.devolucion = devolucion;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
 
     public Integer getEstado() {

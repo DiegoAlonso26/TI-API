@@ -13,6 +13,7 @@ import org.hibernate.annotations.Where;
         private  Integer id;
         private String nombre;
         private String direccion;
+        private String email;
         private String telefono;
         @Column(nullable = false)
         private Integer estado = 1;
@@ -55,5 +56,13 @@ import org.hibernate.annotations.Where;
 
     public void setEstado(Integer estado) {
         this.estado = estado;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

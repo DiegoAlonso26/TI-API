@@ -5,40 +5,25 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 @Entity
-@Table(name = "accesos")
-@SQLDelete(sql = "UPDATE accesos SET estado = 0 WHERE id = ?")
+@Table(name = "acceso")
+@SQLDelete(sql = "UPDATE acceso SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class Acceso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer id;
-    private String permiso;
-    @Column(nullable = false)
-    private Integer estado = 1;
-
+    private String descripcion;
+    private Integer estado;
     @ManyToOne
-    @JoinColumn(name = "idperfil", nullable = false)
+    @JoinColumn(name = "id_perfil")
     private Perfil perfil;
 
-    @ManyToOne
-    @JoinColumn(name = "idmodulo", nullable = false)
-    private Modulo modulo;
-
-    public Integer getId() {
-        return id;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getPermiso() {
-        return permiso;
-    }
-
-    public void setPermiso(String permiso) {
-        this.permiso = permiso;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Integer getEstado() {
@@ -49,19 +34,19 @@ public class Acceso {
         this.estado = estado;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Perfil getPerfil() {
         return perfil;
     }
 
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
-    }
-
-    public Modulo getModulo() {
-        return modulo;
-    }
-
-    public void setModulo(Modulo modulo) {
-        this.modulo = modulo;
     }
 }

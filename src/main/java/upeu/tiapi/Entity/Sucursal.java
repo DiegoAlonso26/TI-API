@@ -23,7 +23,8 @@ public class Sucursal {
     @ManyToOne
     @JoinColumn(name = "id_lugar")
     private Lugar lugar;
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     public Integer getEstado() {
         return estado;

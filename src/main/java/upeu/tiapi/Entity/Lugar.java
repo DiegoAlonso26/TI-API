@@ -16,7 +16,8 @@ public class Lugar {
     private String nombre;
     private String tipo;
     private String LugarSuperior;
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     public Integer getEstado() {
         return estado;

@@ -7,8 +7,8 @@ import org.hibernate.annotations.Where;
 import java.util.List;
 
 @Entity
-@Table(name = "modulo")
-@SQLDelete(sql = "UPDATE modulo SET estado = 0 WHERE id = ?")
+@Table(name = "modulos")
+@SQLDelete(sql = "UPDATE modulos SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class Modulo {
     @Id

@@ -7,8 +7,8 @@ import org.hibernate.annotations.Where;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "detallecompra")
-@SQLDelete(sql = "UPDATE detallecompra SET estado = 0 WHERE id = ?")
+@Table(name = "detallescompras")
+@SQLDelete(sql = "UPDATE detallescompras SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class DetalleCompra {
     @Id
@@ -16,8 +16,8 @@ public class DetalleCompra {
     private Integer id;
     private BigDecimal cantidad;
     private BigDecimal precio;
-    private Integer estado;
-
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     @ManyToOne
     @JoinColumn(name = "id_copmpra")

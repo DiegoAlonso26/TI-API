@@ -10,8 +10,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "detalleventas")
-@SQLDelete(sql = "UPDATE detalleventas SET estado = 0 WHERE id = ?")
+@Table(name = "detallesventas")
+@SQLDelete(sql = "UPDATE detallesventas SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class DetalleVentas {
     @Id

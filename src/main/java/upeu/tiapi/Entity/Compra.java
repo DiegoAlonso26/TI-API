@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 @Entity
-@Table(name = "compra")
-@SQLDelete(sql = "UPDATE compra SET estado = 0 WHERE id = ?")
+@Table(name = "compras")
+@SQLDelete(sql = "UPDATE compras SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class Compra {
 
@@ -30,7 +30,9 @@ public class Compra {
     @JoinColumn(name = "id_proveedor")
     private Proveedor proveedor;
 
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
+
 
     @PrePersist
     protected void onCreate() {

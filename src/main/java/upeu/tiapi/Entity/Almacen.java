@@ -5,16 +5,16 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 @Entity
-@Table(name = "almacen")
-@SQLDelete(sql = "UPDATE almacen SET estado = 0 WHERE id = ?")
+@Table(name = "almacenes")
+@SQLDelete(sql = "UPDATE almacenes SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class Almacen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descripcion;
-    private Integer estado;
-
+    @Column(nullable = false)
+    private Integer estado = 1;
     @ManyToOne
     @JoinColumn(name = "id_lugar")
     private Lugar lugar;

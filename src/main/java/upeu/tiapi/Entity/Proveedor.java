@@ -4,8 +4,8 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 @Entity
-@Table(name = "proveedor")
-@SQLDelete(sql = "UPDATE proveedor SET estado = 0 WHERE id = ?")
+@Table(name = "proveedores")
+@SQLDelete(sql = "UPDATE proveedores SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
     public class Proveedor {
         @Id

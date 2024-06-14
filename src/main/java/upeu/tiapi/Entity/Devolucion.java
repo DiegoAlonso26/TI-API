@@ -8,8 +8,8 @@ import org.hibernate.annotations.Where;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "devolucion")
-@SQLDelete(sql = "UPDATE devolucion SET estado = 0 WHERE id = ?")
+@Table(name = "devoluciones")
+@SQLDelete(sql = "UPDATE devoluciones SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class Devolucion {
     @Id

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "productos")
 @SQLDelete(sql = "UPDATE productos SET estado = 0 WHERE id = ?")
@@ -13,9 +15,9 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
-    private String precio_mayor;
-    private String precio_menor;
-    private String precio_promocion;
+    private BigDecimal precio_mayor;
+    private BigDecimal precio_menor;
+    private BigDecimal precio_promocion;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
@@ -24,7 +26,8 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name = "id_almacen")
     private Almacen almacen;
-    private Integer estado;
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     public Almacen getAlmacen() {
         return almacen;
@@ -66,27 +69,27 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getPrecio_mayor() {
+    public BigDecimal getPrecio_mayor() {
         return precio_mayor;
     }
 
-    public void setPrecio_mayor(String precio_mayor) {
+    public void setPrecio_mayor(BigDecimal precio_mayor) {
         this.precio_mayor = precio_mayor;
     }
 
-    public String getPrecio_menor() {
+    public BigDecimal getPrecio_menor() {
         return precio_menor;
     }
 
-    public void setPrecio_menor(String precio_menor) {
+    public void setPrecio_menor(BigDecimal precio_menor) {
         this.precio_menor = precio_menor;
     }
 
-    public String getPrecio_promocion() {
+    public BigDecimal getPrecio_promocion() {
         return precio_promocion;
     }
 
-    public void setPrecio_promocion(String precio_promocion) {
+    public void setPrecio_promocion(BigDecimal precio_promocion) {
         this.precio_promocion = precio_promocion;
     }
 }

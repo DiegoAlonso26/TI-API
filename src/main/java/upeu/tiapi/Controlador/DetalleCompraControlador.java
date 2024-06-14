@@ -23,7 +23,7 @@ public class DetalleCompraControlador {
     @GetMapping("/DetallesCompra/{id}")
     public ResponseEntity<DetalleCompra> obtenerDetalleCompra(@PathVariable int id) {
         DetalleCompra detalleCompra = servicio.buscarPorId(id)
-                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el detalle de compras financiera con el id: " + id));
+                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el detalle de compres financiera con el id: " + id));
         return ResponseEntity.ok(detalleCompra);
     }
 

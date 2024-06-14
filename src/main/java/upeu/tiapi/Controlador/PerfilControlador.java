@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api-ti")
+@CrossOrigin(origins = "*")
 public class PerfilControlador {
     @Autowired
     private IPerfilesServicio perfilesServicio;

@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api-ti")
+@CrossOrigin(origins = "*")
 public class CompraControlador {
     @Autowired
     private ICompraServicio compraServicio;

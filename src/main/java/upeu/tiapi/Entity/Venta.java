@@ -2,10 +2,8 @@ package upeu.tiapi.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 

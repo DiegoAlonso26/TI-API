@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api-ti")
+@CrossOrigin(origins = "*")
 public class SucursalControlador {
     @Autowired
     private ISucursalServicio sucursalServicio;

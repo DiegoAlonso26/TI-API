@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api-ti")
+@CrossOrigin(origins = "*")
 public class ModuloControlador {
     @Autowired
     private IModuloServicio moduloServicio;

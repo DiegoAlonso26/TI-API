@@ -1,6 +1,5 @@
 package upeu.tiapi.Entity;
 import jakarta.persistence.*;
-import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -8,15 +7,15 @@ import org.hibernate.annotations.Where;
 @Table(name = "proveedor")
 @SQLDelete(sql = "UPDATE proveedor SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
-public class Proveedor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer id;
-    private String nombre;
-    private String direccion;
-    private String telefono;
-    @Column(nullable = false)
-    private Integer estado = 1;
+    public class Proveedor {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private  Integer id;
+        private String nombre;
+        private String direccion;
+        private String telefono;
+        @Column(nullable = false)
+        private Integer estado = 1;
 
     public String getDireccion() {
         return direccion;

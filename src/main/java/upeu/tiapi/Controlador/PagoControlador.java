@@ -12,6 +12,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api-ti")
+@CrossOrigin(origins = "*")
+
 public class PagoControlador {
     @Autowired
     private IPagoServicio pagoServicio;

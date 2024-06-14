@@ -2,7 +2,6 @@ package upeu.tiapi.Entity;
 
 
 import jakarta.persistence.*;
-import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 

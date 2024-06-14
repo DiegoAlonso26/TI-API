@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api-ti")
+@CrossOrigin(origins = "*")
 public class PedidoControlador {
     @Autowired
     private IPedidoServicio pedidoServicio;

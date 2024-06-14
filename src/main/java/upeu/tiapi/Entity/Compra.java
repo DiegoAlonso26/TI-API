@@ -2,7 +2,6 @@ package upeu.tiapi.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -18,11 +17,11 @@ public class Compra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
-
+    //Fk to Proveedor
     @ManyToOne
     @JoinColumn( name = "idproveedor", nullable = false)
     private Proveedor proveedor;
-
+    //FK to Producto
     @ManyToOne
     @JoinColumn( name = "idproducto", nullable = false)
     private Producto producto;

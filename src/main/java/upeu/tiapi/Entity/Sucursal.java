@@ -18,8 +18,6 @@ public class Sucursal {
     private String representante;
     private String nombre;
     private String telefono;
-    @JsonFormat(pattern = "HH:mm")
-    private LocalDateTime horaApertura;
     @ManyToOne
     @JoinColumn(name = "id_lugar")
     private Lugar lugar;
@@ -34,13 +32,6 @@ public class Sucursal {
         this.estado = estado;
     }
 
-    public LocalDateTime getHoraApertura() {
-        return horaApertura;
-    }
-
-    public void setHoraApertura(LocalDateTime horaApertura) {
-        this.horaApertura = horaApertura;
-    }
 
     public Integer getId() {
         return id;

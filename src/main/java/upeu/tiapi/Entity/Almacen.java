@@ -13,6 +13,8 @@ public class Almacen {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descripcion;
+    private String supervisor;
+    private String telefonoSupervisor;
     @Column(nullable = false)
     private Integer estado = 1;
     @ManyToOne
@@ -49,5 +51,21 @@ public class Almacen {
 
     public void setLugar(Lugar lugar) {
         this.lugar = lugar;
+    }
+
+    public String getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(String supervisor) {
+        this.supervisor = supervisor;
+    }
+
+    public String getTelefonoSupervisor() {
+        return telefonoSupervisor;
+    }
+
+    public void setTelefonoSupervisor(String telefonoSupervisor) {
+        this.telefonoSupervisor = telefonoSupervisor;
     }
 }

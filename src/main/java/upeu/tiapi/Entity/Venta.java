@@ -21,7 +21,7 @@ public class Venta {
     // Relación de clave foránea con la clase Usuario
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
-    private Usuario usuario;
+    private Cliente cliente;
 
     // Relación de clave foránea con la clase Usuario
     @ManyToOne
@@ -90,11 +90,11 @@ public class Venta {
         this.total = total;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

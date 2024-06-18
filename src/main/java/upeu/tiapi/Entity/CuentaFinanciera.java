@@ -7,8 +7,8 @@ import org.hibernate.annotations.Where;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "cuentasFinancieras")
-@SQLDelete(sql = "UPDATE cuentasFinancieras SET estado = 0 WHERE id = ?")
+@Table(name = "cuentasfinancieras")
+@SQLDelete(sql = "UPDATE cuentasfinancieras SET estado = 0 WHERE id = ?")
 @Where(clause = "estado = 1")
 public class CuentaFinanciera {
     @Id

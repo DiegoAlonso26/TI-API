@@ -1,8 +1,9 @@
 package upeu.tiapi.Entity;
 
-import jakarta.persistence.*;
+
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "almacenes")

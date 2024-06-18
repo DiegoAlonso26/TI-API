@@ -1,5 +1,5 @@
 package upeu.tiapi.Entity;
-
+;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -12,28 +12,17 @@ public class Acceso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String descripcion;
-    @Column(nullable = false)
-    private Integer estado = 1;
+
     @ManyToOne
     @JoinColumn(name = "id_perfil")
     private Perfil perfil;
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    @ManyToOne
+    @JoinColumn(name = "id_modulo")
+    private Modulo modulo;
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
-    }
+    @Column(nullable = false)
+    private Integer estado = 1;
 
     public Integer getId() {
         return id;
@@ -49,5 +38,21 @@ public class Acceso {
 
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
+    }
+
+    public Modulo getModulo() {
+        return modulo;
+    }
+
+    public void setModulo(Modulo modulo) {
+        this.modulo = modulo;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 }

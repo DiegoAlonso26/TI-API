@@ -1,9 +1,8 @@
 package upeu.tiapi.Entity;
 
-import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,20 +13,8 @@ public class Perfil{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String tipoPerfil;
+    private String nombre;
     private Integer estado;
-
-    @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
-    }
 
     public Integer getId() {
         return id;
@@ -37,19 +24,19 @@ public class Perfil{
         this.id = id;
     }
 
-    public String getTipoPerfil() {
-        return tipoPerfil;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTipoPerfil(String tipoPerfil) {
-        this.tipoPerfil = tipoPerfil;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Integer getEstado() {
+        return estado;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 }

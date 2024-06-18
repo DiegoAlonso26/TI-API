@@ -15,7 +15,9 @@ public class Modulo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
+
     private String nombre;
+
     @Column(nullable = false)
     private Integer estado = 1;
 
@@ -42,5 +44,4 @@ public class Modulo {
     public void setEstado(Integer estado) {
         this.estado = estado;
     }
-
 }

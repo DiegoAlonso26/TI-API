@@ -7,7 +7,6 @@ import org.hibernate.annotations.Where;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-
 @Entity
 @Table(name = "ventas")
 @SQLDelete(sql = "UPDATE ventas SET estado = 0 WHERE id = ?")

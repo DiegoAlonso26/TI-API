@@ -20,7 +20,7 @@ public class DetalleCompra {
     private Integer estado = 1;
 
     @ManyToOne
-    @JoinColumn(name = "id_copmpra")
+    @JoinColumn(name = "id_compra")
     private Compra compra;
 
     @ManyToOne

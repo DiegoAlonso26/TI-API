@@ -34,6 +34,24 @@ public class Usuario {
     @Column(nullable = false)
     private Integer estado = 1;
 
+    public Usuario() {
+    }
+
+    public Usuario(Integer idUsuario, String usuario, String password, String nombres, String apellidos, String telefono, String email, String edad, String foto, Sucursal sucursal, Perfil perfil, Integer estado) {
+        this.idUsuario = idUsuario;
+        this.usuario = usuario;
+        this.password = password;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.email = email;
+        this.edad = edad;
+        this.foto = foto;
+        this.sucursal = sucursal;
+        this.perfil = perfil;
+        this.estado = estado;
+    }
+
     public Integer getIdUsuario() {
         return idUsuario;
     }

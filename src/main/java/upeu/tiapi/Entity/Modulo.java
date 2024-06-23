@@ -21,6 +21,15 @@ public class Modulo {
     @Column(nullable = false)
     private Integer estado = 1;
 
+    public Modulo() {
+    }
+
+    public Modulo(Integer id, String nombre, Integer estado) {
+        this.id = id;
+        this.nombre = nombre;
+        this.estado = estado;
+    }
+
     public Integer getId() {
         return id;
     }

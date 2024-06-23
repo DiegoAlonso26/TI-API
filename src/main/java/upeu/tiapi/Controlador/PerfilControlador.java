@@ -3,6 +3,7 @@ package upeu.tiapi.Controlador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import upeu.tiapi.Entity.Modulo;
 import upeu.tiapi.Entity.Perfil;
 import upeu.tiapi.Servicio.IPerfilesServicio;
 import upeu.tiapi.excepcion.RecursoNoEncontradoExcepcion;
@@ -25,6 +26,11 @@ public class PerfilControlador {
     @GetMapping("/perfiles/{id}")
     public Optional<Perfil> perfile(@PathVariable Integer id) {
         return perfilesServicio.buscarPorId(id);
+    }
+
+    @GetMapping("/perfiles/{id}/module")
+    public Optional<List<Modulo>> perfileModule(@PathVariable Integer id) {
+        return perfilesServicio.buscarPorModulo(id);
     }
 
     @PostMapping("/perfiles")

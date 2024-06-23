@@ -16,12 +16,12 @@ public class DevolucionControlador {
     @Autowired
     private IDevolucionServicio servicio;
     @GetMapping("/Devoluciones")
-    public List<Devolucion> obetenerDevoluciones(@PathVariable int id){
+    public List<Devolucion> obtenerDevoluciones(){
         return servicio.buscarTodos();
     }
 
     @GetMapping("/Devoluciones/{id}")
-    public ResponseEntity<Devolucion> obetenerDevolucion(@PathVariable int id){
+    public ResponseEntity<Devolucion> obtenerDevolucion(@PathVariable int id){
         Devolucion devolucion = servicio.buscarPorId(id)
                 .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró la devolucion de compras financiera con el id: " + id));
         return ResponseEntity.ok(devolucion);
@@ -44,6 +44,4 @@ public class DevolucionControlador {
     public void eliminar(@PathVariable int id){
         servicio.eliminar(id);
     }
-
-
 }

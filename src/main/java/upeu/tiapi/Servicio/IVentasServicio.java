@@ -12,4 +12,6 @@ public interface IVentasServicio {
     void eliminar(Integer id);
     void actualizar(Venta venta);
     Optional<Venta> buscarPorId(Integer id);
+    List<Venta> buscarPorSucursal(String sucursal);
 }
+

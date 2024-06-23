@@ -37,4 +37,9 @@ public class VentaServicioImpl implements IVentasServicio {
     public Optional<Venta> buscarPorId(Integer id) {
         return ventaRepositorio.findById(id);
     }
+
+    @Override
+    public List<Venta> buscarPorSucursal(String sucursal) {
+        return ventaRepositorio.findBySucursal(sucursal);
+    }
 }

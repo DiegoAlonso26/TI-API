@@ -19,9 +19,6 @@ public class Producto {
     private BigDecimal precio_menor;
     private BigDecimal precio_promocion;
 
-    @Lob
-    private byte[] imagen;
-
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
@@ -97,11 +94,5 @@ public class Producto {
         this.precio_promocion = precio_promocion;
     }
 
-    public byte[] getImagen() {
-        return imagen;
-    }
 
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
-    }
 }

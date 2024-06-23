@@ -6,7 +6,6 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import java.time.LocalDateTime;
 
-
 @Entity
 @Table(name = "usuarios")
 @SQLDelete(sql = "UPDATE usuarios SET estado = 0 WHERE id = ?")
@@ -14,32 +13,59 @@ import java.time.LocalDateTime;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String nombre;
+    private Integer idUsuario;
+    private String usuario;
     private String password;
-    private String email;
-    private String foto;
+    private String nombres;
+    private String apellidos;
     private String telefono;
+    private String email;
+    private String edad;
+    private String foto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_sucursal")
+    private Sucursal sucursal;
+
     @ManyToOne
     @JoinColumn(name = "id_perfil")
     private Perfil perfil;
+
     @Column(nullable = false)
     private Integer estado = 1;
 
-    public Integer getId() {
-        return id;
+    public Usuario() {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Usuario(Integer idUsuario, String usuario, String password, String nombres, String apellidos, String telefono, String email, String edad, String foto, Sucursal sucursal, Perfil perfil, Integer estado) {
+        this.idUsuario = idUsuario;
+        this.usuario = usuario;
+        this.password = password;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.email = email;
+        this.edad = edad;
+        this.foto = foto;
+        this.sucursal = sucursal;
+        this.perfil = perfil;
+        this.estado = estado;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getPassword() {
@@ -50,12 +76,44 @@ public class Usuario {
         this.password = password;
     }
 
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getEdad() {
+        return edad;
+    }
+
+    public void setEdad(String edad) {
+        this.edad = edad;
     }
 
     public String getFoto() {
@@ -66,12 +124,12 @@ public class Usuario {
         this.foto = foto;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public Sucursal getSucursal() {
+        return sucursal;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
 
     public Perfil getPerfil() {

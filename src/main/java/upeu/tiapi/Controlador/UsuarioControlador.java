@@ -40,7 +40,7 @@ public class UsuarioControlador {
             throw new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id);
 
         }
-        usuario.setId(id);
+        usuario.setIdUsuario(id);
         usuarioServicio.actualizar(usuario);
         return ResponseEntity.ok(usuario);
     }

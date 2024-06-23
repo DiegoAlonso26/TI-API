@@ -23,6 +23,16 @@ public class Acceso {
     @Column(nullable = false)
     private Integer estado = 1;
 
+    public Acceso() {
+    }
+
+    public Acceso(Integer id, Perfil perfil, Modulo modulo, Integer estado) {
+        this.id = id;
+        this.perfil = perfil;
+        this.modulo = modulo;
+        this.estado = estado;
+    }
+
     public Integer getId() {
         return id;
     }

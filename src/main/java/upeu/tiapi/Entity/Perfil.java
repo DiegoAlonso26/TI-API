@@ -16,6 +16,15 @@ public class Perfil{
     private String nombre;
     private Integer estado;
 
+    public Perfil() {
+    }
+
+    public Perfil(Integer id, String nombre, Integer estado) {
+        this.id = id;
+        this.nombre = nombre;
+        this.estado = estado;
+    }
+
     public Integer getId() {
         return id;
     }

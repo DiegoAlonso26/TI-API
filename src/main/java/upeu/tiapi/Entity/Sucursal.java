@@ -14,7 +14,7 @@ public class Sucursal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Integer id;
+    private Long id;
     private String representante;
     private String nombre;
     private String telefono;
@@ -33,11 +33,11 @@ public class Sucursal {
     }
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

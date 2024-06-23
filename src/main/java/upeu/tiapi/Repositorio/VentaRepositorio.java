@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface VentaRepositorio extends JpaRepository<Venta, Integer> {
     List<Venta> findBySucursal(String sucursal);
-
 }

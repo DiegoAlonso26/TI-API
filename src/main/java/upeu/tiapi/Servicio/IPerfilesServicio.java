@@ -1,6 +1,7 @@
 package upeu.tiapi.Servicio;
 
 
+import upeu.tiapi.Entity.Modulo;
 import upeu.tiapi.Entity.Perfil;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface IPerfilesServicio {
     void eliminar(Integer id);
     void actualizar(Perfil perfil);
     Optional<Perfil> buscarPorId(Integer id);
+    Optional<List<Modulo>> buscarPorModulo(Integer id);
 }

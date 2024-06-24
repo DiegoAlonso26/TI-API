@@ -27,7 +27,14 @@ public class AccesoServicioImpl implements IAccesoServicio {
 
     @Override
     public void eliminar(Integer id) {
-        accesoRepositorio.deleteById(id);
+        Optional<Acceso> a = accesoRepositorio.findById(id);
+        if (a.get().getEstado()==0){
+            a.get().setEstado(1);
+            accesoRepositorio.save(a.get());
+        } else {
+            a.get().setEstado(0);
+            accesoRepositorio.save(a.get());
+        }
     }
 
     @Override

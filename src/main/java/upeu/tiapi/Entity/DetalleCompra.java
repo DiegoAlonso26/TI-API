@@ -1,5 +1,4 @@
 package upeu.tiapi.Entity;
-
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;

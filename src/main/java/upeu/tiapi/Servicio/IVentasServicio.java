@@ -13,3 +13,4 @@ public interface IVentasServicio {
     void actualizar(Venta venta);
     Optional<Venta> buscarPorId(Integer id);
 }
+

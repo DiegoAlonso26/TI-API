@@ -38,6 +38,11 @@ public class ProductoControlador {
         return ResponseEntity.ok(producto);
     }
 
+    @GetMapping("/productos/sucursal/{sucursalId}")
+    public List<Producto> listarProductosPorSucursal(@PathVariable Integer sucursalId) {
+        return productoServicio.listarProductosPorSucursal(sucursalId);
+    }
+
     @PostMapping("/productos")
     public Producto guardarProducto(@RequestBody Producto producto) {
         return productoServicio.guardarProducto(producto);

@@ -27,6 +27,10 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name = "id_almacen")
     private Almacen almacen;
+    @ManyToOne
+    @JoinColumn(name = "id_sucursal")
+    private Sucursal sucursal;
+
     @Column(nullable = false)
     private Integer estado = 1;
 
@@ -94,5 +98,11 @@ public class Producto {
         this.precio_promocion = precio_promocion;
     }
 
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
 
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
+    }
 }

@@ -10,4 +10,6 @@ public interface IProductoServicio {
     void eliminarProducto(Integer id);
     void actualizarProducto(Producto producto);
     Optional<Producto> buscarProductoPorId(Integer id);
+    List<Producto> listarProductosPorSucursal(Integer sucursalId);
+
 }

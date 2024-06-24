@@ -40,4 +40,8 @@ public class ProductoServicioImpl implements IProductoServicio {
     public Optional<Producto> buscarProductoPorId(Integer id) {
         return productoRepositorio.findById(id);
     }
+    @Override
+    public List<Producto> listarProductosPorSucursal(Integer sucursalId) {
+        return productoRepositorio.findBySucursalId(sucursalId);
+    }
 }

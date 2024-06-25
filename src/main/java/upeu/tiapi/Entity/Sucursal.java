@@ -24,16 +24,6 @@ public class Sucursal {
     private Lugar lugar;
     @Column(nullable = false)
     private Integer estado = 1;
-    @OneToMany(mappedBy = "sucursal")
-    private List<Usuario> usuarios;
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
 
     public Integer getEstado() {
         return estado;

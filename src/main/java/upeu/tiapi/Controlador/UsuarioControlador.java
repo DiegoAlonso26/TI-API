@@ -22,8 +22,12 @@ public class UsuarioControlador {
         return usuarioServicio.buscarTodos();
     }
 
-    @PostMapping("/usuarios")
     public Usuario guardar(@RequestBody Usuario usuario) {
+        // Validar que la sucursal asignada existe en la base de datos
+        if (usuario.getSucursal() == null || usuario.getSucursal().getId() == null) {
+            throw new IllegalArgumentException("La sucursal no puede ser nula");
+        }
+
         return usuarioServicio.guardar(usuario);
     }
 

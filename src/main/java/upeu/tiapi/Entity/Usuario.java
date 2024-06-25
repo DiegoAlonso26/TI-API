@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Integer idUsuario;
     private String usuario;
     private String password;
@@ -24,7 +25,7 @@ public class Usuario {
     private String foto;
 
     @ManyToOne
-    @JoinColumn(name = "id_sucursal")
+    @JoinColumn(name = "id_sucursal", nullable = false)  // Asegúrate que id_sucursal no sea nullable
     private Sucursal sucursal;
 
     @ManyToOne

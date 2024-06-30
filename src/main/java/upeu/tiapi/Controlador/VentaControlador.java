@@ -1,57 +1,56 @@
 package upeu.tiapi.Controlador;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import upeu.tiapi.Entity.Venta;
 import upeu.tiapi.Servicio.IVentasServicio;
 import upeu.tiapi.excepcion.RecursoNoEncontradoExcepcion;
-
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api-ti")
 @CrossOrigin(origins = "*")
 public class VentaControlador {
     @Autowired
-    private IVentasServicio ventaServicio;
+    private IVentasServicio ventasServicio;
 
     @GetMapping("/ventas")
-    public List<Venta> listar() {
-        return ventaServicio.buscarTodos();
-    }
-
-    @PostMapping("/ventas")
-    public void guardar(@RequestBody Venta venta) {
-        venta.setFecha(LocalDateTime.now()); // Asignar la fecha y hora actual
-        ventaServicio.guardar(venta);
+    public List<Venta> listarVentas() {
+        return ventasServicio.buscarTodos();
     }
 
     @GetMapping("/ventas/{id}")
-    public Optional<Venta> buscarPorId(@PathVariable Integer id) {
-        return ventaServicio.buscarPorId(id);
-    }
-
-    @PutMapping("/ventas/{id}")
-    public ResponseEntity<Venta> actualizar(@PathVariable int id, @RequestBody Venta venta) {
-        if(!ventaServicio.buscarPorId(id).isPresent()) {
-            throw new RecursoNoEncontradoExcepcion("No se encontró la venta con el id: " + id);
-        }
-        venta.setFecha(LocalDateTime.now());
-        venta.setId(id);
-        ventaServicio.actualizar(venta);
+    public ResponseEntity<Venta> buscarVentaPorId(@PathVariable int id) {
+        Venta venta = ventasServicio.buscarPorId(id)
+                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró la venta con el id: " + id));
         return ResponseEntity.ok(venta);
     }
 
+    @PostMapping("/ventas")
+    public ResponseEntity<Venta> guardarVenta(@RequestBody Venta venta) {
+        // La fecha se establecerá automáticamente por el método @PrePersist
+        Venta nuevaVenta = ventasServicio.guardar(venta);
+        return new ResponseEntity<>(nuevaVenta, HttpStatus.CREATED);
+    }
 
+    @PutMapping("/ventas/{id}")
+    public ResponseEntity<Venta> actualizarVenta(@PathVariable int id, @RequestBody Venta venta) {
+        Venta ventaExistente = ventasServicio.buscarPorId(id)
+                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró la venta con el id: " + id));
+        venta.setId(id);
+        Venta ventaActualizada = ventasServicio.actualizar(venta);
+        return ResponseEntity.ok(ventaActualizada);
+    }
 
     @DeleteMapping("/ventas/{id}")
-    public String eliminar(@PathVariable Integer id) {
-        ventaServicio.eliminar(id);
-        return "Venta eliminada correctamente";
+    public ResponseEntity<Void> eliminarVenta(@PathVariable int id) {
+        ventasServicio.buscarPorId(id)
+                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró la venta con el id: " + id));
+        ventasServicio.eliminar(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

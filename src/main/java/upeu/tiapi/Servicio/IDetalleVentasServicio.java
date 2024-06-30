@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public interface IDetalleVentasServicio {
     List<DetalleVentas> buscarTodos();
-    DetalleVentas guardar(DetalleVentas detalleVentas);
+    DetalleVentas guardar(DetalleVentas detalleVenta);
     void eliminar(Integer id);
-    void actualizar(DetalleVentas detalleVentas);
-    Optional<DetalleVentas> buscarPorId(Integer id);
+    DetalleVentas actualizar(DetalleVentas detalleVenta);
+    DetalleVentas buscarPorId(Integer id);
 }

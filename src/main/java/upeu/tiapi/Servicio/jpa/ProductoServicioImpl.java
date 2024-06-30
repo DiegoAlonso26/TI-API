@@ -44,4 +44,16 @@ public class ProductoServicioImpl implements IProductoServicio {
     public List<Producto> listarProductosPorSucursal(Integer sucursalId) {
         return productoRepositorio.findBySucursalId(sucursalId);
     }
+    @Override
+    public void disminuirStock(int productoId, int cantidad) {
+        Producto producto = productoRepositorio.findById(productoId)
+                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("Producto no encontrado con el id: " + productoId));
+
+        if (producto.getStock() < cantidad) {
+            throw new IllegalArgumentException("Stock insuficiente");
+        }
+
+        producto.setStock(producto.getStock() - cantidad);
+        productoRepositorio.save(producto);
+    }
 }

@@ -11,5 +11,5 @@ public interface IProductoServicio {
     void actualizarProducto(Producto producto);
     Optional<Producto> buscarProductoPorId(Integer id);
     List<Producto> listarProductosPorSucursal(Integer sucursalId);
-
+    void disminuirStock(int productoId, int cantidad);
 }

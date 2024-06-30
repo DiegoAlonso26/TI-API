@@ -15,40 +15,49 @@ import java.util.List;
 
 public class DetalleVentasControlador {
     @Autowired
-    private IDetalleVentasServicio detalleVentasServicio;
+    private IDetalleVentasServicio detalleVentaServicio;
 
-    @GetMapping("/detalleventas")
-    public List<DetalleVentas> listaDetalleVentas() {
-        return detalleVentasServicio.buscarTodos();
+    @GetMapping("/detalle-ventas")
+    public List<DetalleVentas> listarDetalleVentas() {
+        return detalleVentaServicio.buscarTodos();
     }
 
-    @GetMapping("/detalleventas/{id}")
-    public ResponseEntity<DetalleVentas> buscarDetalleVentas(@PathVariable Integer id) {
-        DetalleVentas detalleVentas = detalleVentasServicio.buscarPorId(id)
-                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el detalle de ventas con el id: " + id));
-    return ResponseEntity.ok(detalleVentas);
-    }
-
-    @PostMapping("/detalleventas")
-    public DetalleVentas guardarDetalleVentas(@RequestBody DetalleVentas detalleVentas) {
-        return detalleVentasServicio.guardar(detalleVentas);
-    }
-    @PutMapping("/detalleventas/{id}")
-    public ResponseEntity<DetalleVentas> actualizarDetalleVentas(@PathVariable Integer id, @RequestBody DetalleVentas detalleVentas) {
-        if(!detalleVentasServicio.buscarPorId(id).isPresent()){
-            throw new RecursoNoEncontradoExcepcion("No se encontró el detalle de ventas con el id: " + id);
-
+    @GetMapping("/detalle-ventas/{id}")
+    public ResponseEntity<DetalleVentas> buscarDetalleVentaPorId(@PathVariable int id) {
+        DetalleVentas detalleVenta = detalleVentaServicio.buscarPorId(id);
+        if (detalleVenta == null) {
+            throw new RecursoNoEncontradoExcepcion("No se encontró el detalle de venta con el id: " + id);
         }
-        detalleVentas.setId(id);
-        detalleVentasServicio.actualizar(detalleVentas);
-        return ResponseEntity.ok(detalleVentas);
+        return ResponseEntity.ok(detalleVenta);
     }
 
-    @DeleteMapping("/detalleventas/{id}")
-    public String eliminarDetalleVentas(@PathVariable Integer id) {
-        detalleVentasServicio.eliminar(id);
-        return "Detalle de ventas con el id: " + id + " eliminado";
+    @PostMapping("/detalle-ventas")
+    public ResponseEntity<DetalleVentas> guardarDetalleVenta(@RequestBody DetalleVentas detalleVenta) {
+        DetalleVentas nuevoDetalleVenta = detalleVentaServicio.guardar(detalleVenta);
+        return ResponseEntity.ok(nuevoDetalleVenta);
     }
+
+    @PutMapping("/detalle-ventas/{id}")
+    public ResponseEntity<DetalleVentas> actualizarDetalleVenta(@PathVariable int id, @RequestBody DetalleVentas detalleVenta) {
+        DetalleVentas detalleVentaExistente = detalleVentaServicio.buscarPorId(id);
+        if (detalleVentaExistente == null) {
+            throw new RecursoNoEncontradoExcepcion("No se encontró el detalle de venta con el id: " + id);
+        }
+        detalleVenta.setId(id);
+        DetalleVentas detalleVentaActualizado = detalleVentaServicio.actualizar(detalleVenta);
+        return ResponseEntity.ok(detalleVentaActualizado);
+    }
+
+    @DeleteMapping("/detalle-ventas/{id}")
+    public ResponseEntity<Void> eliminarDetalleVenta(@PathVariable int id) {
+        DetalleVentas detalleVentaExistente = detalleVentaServicio.buscarPorId(id);
+        if (detalleVentaExistente == null) {
+            throw new RecursoNoEncontradoExcepcion("No se encontró el detalle de venta con el id: " + id);
+        }
+        detalleVentaServicio.eliminar(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 
 }

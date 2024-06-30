@@ -11,31 +11,30 @@ import java.util.Optional;
 @Service
 public class DetalleVentasServicioImpl implements IDetalleVentasServicio {
     @Autowired
-    private DetalleVentasRepositorio detalleVentasRepositorio;
-    @Override
-    public void actualizar(DetalleVentas detalleVentas) {
-        detalleVentasRepositorio.save(detalleVentas);
-
-    }
+    private DetalleVentasRepositorio detalleVentaRepositorio;
 
     @Override
     public List<DetalleVentas> buscarTodos() {
-        return detalleVentasRepositorio.findAll();
+        return detalleVentaRepositorio.findAll();
     }
 
     @Override
-    public DetalleVentas guardar(DetalleVentas detalleVentas) {
-        return detalleVentasRepositorio.save(detalleVentas);
+    public DetalleVentas guardar(DetalleVentas detalleVenta) {
+        return detalleVentaRepositorio.save(detalleVenta);
     }
 
     @Override
     public void eliminar(Integer id) {
-        detalleVentasRepositorio.deleteById(id);
-
+        detalleVentaRepositorio.deleteById(id);
     }
 
     @Override
-    public Optional<DetalleVentas> buscarPorId(Integer id) {
-        return detalleVentasRepositorio.findById(id);
+    public DetalleVentas actualizar(DetalleVentas detalleVenta) {
+        return detalleVentaRepositorio.save(detalleVenta);
+    }
+
+    @Override
+    public DetalleVentas buscarPorId(Integer id) {
+        return detalleVentaRepositorio.findById(id).orElse(null);
     }
 }

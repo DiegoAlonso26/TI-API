@@ -2,17 +2,13 @@ package upeu.tiapi.Entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "ventas")
@@ -25,33 +21,26 @@ public class Venta {
     @Column(nullable = false)
     private Integer estado = 1;
 
-    // Relación de clave foránea con la clase Usuario
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente cliente;
 
-    // Relación de clave foránea con la clase Usuario
     @ManyToOne
     @JoinColumn(name = "id_sucursal", nullable = false)
     private Sucursal sucursal;
 
-    // Relación de clave foránea con la clase Usuario
-    @ManyToOne
-    @JoinColumn(name = "id_producto", nullable = false)
-    private Producto producto;
-
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @Column(nullable = false)
     private LocalDateTime fecha;
     private String tipoPago;
-    private String devolucion;
     private BigDecimal total;
 
-    public String getDevolucion() {
-        return devolucion;
-    }
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<DetalleVentas> detalles;
 
-    public void setDevolucion(String devolucion) {
-        this.devolucion = devolucion;
+    @PrePersist
+    protected void onCreate() {
+        this.fecha = LocalDateTime.now();
     }
 
     public Integer getEstado() {
@@ -110,11 +99,14 @@ public class Venta {
         this.cliente = cliente;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public List<DetalleVentas> getDetalles() {
+        return detalles;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setDetalles(List<DetalleVentas> detalles) {
+        this.detalles = detalles;
+        for (DetalleVentas detalle : detalles) {
+            detalle.setVenta(this);
+        }
     }
 }

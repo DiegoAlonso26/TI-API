@@ -10,7 +10,7 @@ public interface IVentasServicio {
     List<Venta> buscarTodos();
     Venta guardar(Venta venta);
     void eliminar(Integer id);
-    void actualizar(Venta venta);
+    Venta actualizar(Venta venta);
     Optional<Venta> buscarPorId(Integer id);
 }
 

@@ -50,9 +50,8 @@ public class ProductoControlador {
 
     @PutMapping("/productos/{id}")
     public ResponseEntity<Producto> actualizarProducto(@PathVariable int id, @RequestBody Producto producto) {
-        if (!productoServicio.buscarProductoPorId(id).isPresent()) {
-            throw new RecursoNoEncontradoExcepcion("No se encontró el producto con el id: " + id);
-        }
+        Producto productoExistente = productoServicio.buscarProductoPorId(id)
+                .orElseThrow(() -> new RecursoNoEncontradoExcepcion("No se encontró el producto con el id: " + id));
         producto.setId(id);
         productoServicio.actualizarProducto(producto);
         return ResponseEntity.ok(producto);
@@ -68,5 +67,15 @@ public class ProductoControlador {
         }
         productoServicio.eliminarProducto(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/productos/disminuir-stock")
+    public ResponseEntity<?> disminuirStock(@RequestParam int productoId, @RequestParam int cantidad) {
+        try {
+            productoServicio.disminuirStock(productoId, cantidad);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 }

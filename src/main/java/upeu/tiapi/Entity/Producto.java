@@ -18,7 +18,7 @@ public class Producto {
     private BigDecimal precio_mayor;
     private BigDecimal precio_menor;
     private BigDecimal precio_promocion;
-
+    private Integer stock;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
@@ -104,5 +104,13 @@ public class Producto {
 
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 }

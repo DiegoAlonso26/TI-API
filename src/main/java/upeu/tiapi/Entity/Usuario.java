@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "usuarios")
-@SQLDelete(sql = "UPDATE usuarios SET estado = 0 WHERE id = ?")
+@SQLDelete(sql = "UPDATE usuarios SET estado = 0 WHERE idUsuario = ?")
 @Where(clause = "estado = 1")
 public class Usuario {
     @Id

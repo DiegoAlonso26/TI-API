@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import upeu.tiapi.Entity.Usuario;
 import upeu.tiapi.Repositorio.UsuarioRepositorio;
 import upeu.tiapi.Servicio.IUsuarioServicio;
+import upeu.tiapi.excepcion.RecursoNoEncontradoExcepcion;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,8 +27,16 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 
     @Override
     public void eliminar(Integer id) {
-        usuarioRepositorio.deleteById(id);
+        Optional<Usuario> usuarioOpt = usuarioRepositorio.findById(id);
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
+            usuario.setEstado(0);
+            usuarioRepositorio.save(usuario);
+        } else {
+            throw new RecursoNoEncontradoExcepcion("No se encontró el usuario con el id: " + id);
+        }
     }
+
 
     @Override
     public void actualizar(Usuario usuario) {

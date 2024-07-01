@@ -1,6 +1,7 @@
 package upeu.tiapi.Controlador;
 
 
+import org.springframework.http.HttpStatus;
 import upeu.tiapi.Entity.Usuario;
 import upeu.tiapi.excepcion.RecursoNoEncontradoExcepcion;
 import upeu.tiapi.Servicio.IUsuarioServicio;
@@ -46,7 +47,15 @@ public class UsuarioControlador {
     }
 
     @DeleteMapping("/usuarios/{id}")
-    public void eliminar(@PathVariable Integer id) {
-        usuarioServicio.eliminar(id);
+    public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
+        try {
+            usuarioServicio.eliminar(id);
+            return ResponseEntity.noContent().build();
+        } catch (RecursoNoEncontradoExcepcion e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
+
 }

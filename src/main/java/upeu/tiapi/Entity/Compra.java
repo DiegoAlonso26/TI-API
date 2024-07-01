@@ -24,7 +24,6 @@ public class Compra {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime fecha;
 
-    private char devolucion;
 
     @ManyToOne
     @JoinColumn(name = "id_proveedor")
@@ -71,13 +70,7 @@ public class Compra {
         this.fecha = fecha;
     }
 
-    public char getDevolucion() {
-        return devolucion;
-    }
 
-    public void setDevolucion(char devolucion) {
-        this.devolucion = devolucion;
-    }
 
     public Proveedor getProveedor() {
         return proveedor;

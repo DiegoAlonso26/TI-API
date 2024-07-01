@@ -17,7 +17,7 @@ public class DetalleCompraControlador {
     private IDetalleComprasServicio servicio;
 
     @GetMapping("/DetalleCompras")
-    public List<DetalleCompra> obtenerDetalleCompras(@PathVariable int id) {
+    public List<DetalleCompra> obtenerDetalleCompras() {
         return servicio.buscarTodos();
     }
     @GetMapping("/DetallesCompra/{id}")

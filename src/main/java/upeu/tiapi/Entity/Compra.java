@@ -24,7 +24,6 @@ public class Compra {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime fecha;
 
-
     @ManyToOne
     @JoinColumn(name = "id_proveedor")
     private Proveedor proveedor;

@@ -46,4 +46,9 @@ public class DetalleCompraControlador {
     public void eliminarDetalleCompra(@PathVariable int id) {
         servicio.eliminar(id);
     }
+    @GetMapping("/DetalleCompras/compra/{compra}")
+    public List<DetalleCompra> obtenerDetallesPorCompra(@PathVariable Integer compra) {
+        return servicio.buscarPorIdCompra(compra);
+    }
+
 }

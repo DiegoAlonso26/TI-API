@@ -39,4 +39,8 @@ public class DetalleCompraServicioImpl implements IDetalleComprasServicio {
     public Optional<DetalleCompra> buscarPorId(Integer id) {
         return repositorio.findById(id);
     }
+    @Override
+    public List<DetalleCompra> buscarPorIdCompra(Integer compra) {
+        return repositorio.findByCompraId(compra);
+    }
 }

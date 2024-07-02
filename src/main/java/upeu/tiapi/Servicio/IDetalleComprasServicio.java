@@ -12,4 +12,5 @@ public interface IDetalleComprasServicio {
     void eliminar(Integer id);
     void actualizar(DetalleCompra detalleCompra);
     Optional<DetalleCompra> buscarPorId(Integer id);
+    List<DetalleCompra> buscarPorIdCompra(Integer compra);
 }
